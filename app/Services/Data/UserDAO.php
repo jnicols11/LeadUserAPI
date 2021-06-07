@@ -20,6 +20,41 @@ class UserDAO
         return $user;
     }
 
+    public static function getUserByUsernameOrEmail($name)
+    {
+        // Log funtion entry
+        LeadLogger::info("Entering function getUserByUsernameOrEmail in class UserDAO");
+
+        // Check name that was sent
+        $value = DB::table('user')->where('Username', $name)->first();
+        $value2 = DB::table('user')->where('Email', $name)->first();
+
+        if ($value != null && $value2 == null) {
+            // Account with matching username was found
+            $user = new UserModel($value->Full_Name, $value->Username, $value->Email, null);
+            $user->setID($value->ID);
+
+            // Log function exit
+            LeadLogger::info("User was found by username, exiting getUserByUsernameOrEmail in class UserDAO");
+
+            return $user;
+        } elseif ($value == null && $value2 != null) {
+            // Account with matching email was found
+            $user = new UserModel($value2->Full_Name, $value2->Username, $value2->Email, null);
+            $user->setID($value2->ID);
+
+            // Log function exit
+            LeadLogger::info("User was found by email, exiting getUserByUsernameOrEmail in class UserDAO");
+
+            return $user;
+        } else {
+            // No account was found
+            // Log function exit
+            LeadLogger::info("No Account was found, exiting getUserByUsernameOrEmail in class UserDAO");
+            return null;
+        }
+    }
+
     public static function getAllUsers()
     {
         return DB::table('user')->get()->toJson();

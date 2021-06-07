@@ -26,6 +26,14 @@ class UserService
         return UserDAO::getUserByID($id);
     }
 
+    public static function getUserByUsernameOrEmail($name)
+    {
+        LeadLogger::info("Entering function getUserByUsernameOrEmail in class UserService");
+
+        LeadLogger::info("Exiting function getUserByUsernameOrEmail in class UserService");
+        return UserDAO::getUserByUsernameOrEmail($name);
+    }
+
     public static function createUser($user)
     {
         LeadLogger::info("Entering function createUser in class UserService");

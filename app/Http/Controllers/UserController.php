@@ -24,6 +24,27 @@ class UserController extends Controller
         return $user->jsonSerialize();
     }
 
+    public function getUserByUsernameOrEmail($name)
+    {
+        // Log function entry
+        LeadLogger::info("Entering function getUserByUsernameOrEmail in class UserController");
+
+        // get user from service
+        $user = UserService::getUserByUsernameOrEmail($name);
+
+        if ($user != null) {
+            // user account was found Log function exit and return
+            LeadLogger::info("Exiting function getUserByUsernameOrEmail in class UserController");
+            return $user->jsonSerialize();
+        } else {
+            // no account was found Log warning and return
+            LeadLogger::warning("No user account was found, returning with error code 404");
+            return response()->json([
+                'message' => 'No account was found'
+            ], 404);
+        }
+    }
+
     public function getAllUsers()
     {
         // Log function entry

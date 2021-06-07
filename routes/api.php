@@ -28,23 +28,6 @@ Route::post('/updateAccEmail', 'UserController@updateAccEmail');
 Route::post('/updateUser', 'UserController@updateUser');
 
 // User Gets
+Route::get('/getUserByUsernameOrEmail/{name}', 'UserController@getUserByUsernameOrEmail');
 Route::get('/getUser/{id}', 'UserController@getUser');
 Route::get('/getAllUsers', 'UserController@getAllUsers');
-
-// Project Endpoints
-// Project Posts
-
-// Project Gets
-Route::get('/getProjectByID/{id}', 'ProjectController@getProjectByID');
-
-Route::get('/getTeamByID/{id}', 'ProjectController@getTeamByID');
-
-Route::get('/getIssueByID/{id}', 'ProjectController@getIssueByID');
-
-Route::get('/getAllProjectIssues/{projectID}', 'ProjectController@getAllProjectIssues');
-
-Route::get('/getSprintByID/{id}', 'ProjectController@getSprintByID');
-
-Route::get('/getAllProjectSprints/{projectID}', 'ProjectController@getAllProjectSprints');
-
-Route::get('/getAllMemberSprints/{projectID}/{userID}', 'ProjectController@getAllMemberSprints');
