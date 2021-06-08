@@ -69,10 +69,11 @@ class UserController extends Controller
         $fullName = $request->input('name');
         $username = $request->input('username');
         $email = $request->input('email');
+        $role = $request->input('role');
         $password = $request->input('password');
 
         // Create Model from Variables
-        $user = new UserModel($fullName, $username, $email, $password);
+        $user = new UserModel($fullName, $username, $email, $role, $password);
 
         // Attempt User Registry in DB
         if (UserService::createUser($user) == 200) {

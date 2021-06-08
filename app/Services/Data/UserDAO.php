@@ -13,7 +13,7 @@ class UserDAO
         // get user from database by ID
         $user = DB::table('user')->where('ID', $id)->first();
 
-        $user = new UserModel($user->Full_Name, $user->Username, $user->Email, null);
+        $user = new UserModel($user->Full_Name, $user->Username, $user->Email, $user->Role, null);
 
         $user->setID($id);
 
@@ -31,7 +31,7 @@ class UserDAO
 
         if ($value != null && $value2 == null) {
             // Account with matching username was found
-            $user = new UserModel($value->Full_Name, $value->Username, $value->Email, null);
+            $user = new UserModel($value->Full_Name, $value->Username, $value->Email, $value->Role, null);
             $user->setID($value->ID);
 
             // Log function exit
@@ -40,7 +40,7 @@ class UserDAO
             return $user;
         } elseif ($value == null && $value2 != null) {
             // Account with matching email was found
-            $user = new UserModel($value2->Full_Name, $value2->Username, $value2->Email, null);
+            $user = new UserModel($value2->Full_Name, $value2->Username, $value2->Email, $value2->Role, null);
             $user->setID($value2->ID);
 
             // Log function exit
@@ -96,11 +96,13 @@ class UserDAO
 
             $email = $user->Email;
 
+            $role = $user->Role;
+
             $password = null;
 
             $id = $user->ID;
 
-            $user = new UserModel($fullName, $username, $email, $password);
+            $user = new UserModel($fullName, $username, $email, $role, $password);
 
             $user->setID($id);
 
@@ -115,11 +117,13 @@ class UserDAO
 
             $email = $user->Email;
 
+            $role = $user->Role;
+
             $password = null;
 
             $id = $user->ID;
 
-            $user = new UserModel($fullName, $username, $email, $password);
+            $user = new UserModel($fullName, $username, $email, $role, $password);
 
             $user->setID($id);
 

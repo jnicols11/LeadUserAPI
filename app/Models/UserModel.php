@@ -9,12 +9,14 @@ class UserModel
     private $username;
     private $email;
     private $password;
+    private $role;
 
-    public function __construct($fullName, $username, $email, $password)
+    public function __construct($fullName, $username, $email, $role, $password)
     {
         $this->fullName = $fullName;
         $this->username = $username;
         $this->email = $email;
+        $this->role = $role;
         $this->password = $password;
     }
 
@@ -35,7 +37,7 @@ class UserModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUsername()
     {
@@ -43,7 +45,7 @@ class UserModel
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -51,7 +53,15 @@ class UserModel
     }
 
     /**
-     * @return mixed
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return string
      */
     public function getPassword()
     {
