@@ -19,15 +19,15 @@ Route::get('/test', function () {
 
 // User Endpoints
 // User Posts
-Route::post('/register', 'UserController@createUser');
-Route::post('/login', 'UserController@login');
-Route::post('/updateAccName', 'UserController@updateAccName');
-Route::post('/updateAccUsername', 'UserController@updateAccUsername');
-Route::post('/updateAccEmail', 'UserController@updateAccEmail');
+Route::post('/register', 'UserController@createUser')->middleware("Cors");
+Route::match(['post', 'options'], "login", "UserController@login")->middleware("Cors");
+Route::post('/updateAccName', 'UserController@updateAccName')->middleware("Cors");
+Route::post('/updateAccUsername', 'UserController@updateAccUsername')->middleware("Cors");
+Route::post('/updateAccEmail', 'UserController@updateAccEmail')->middleware("Cors");
 
-Route::post('/updateUser', 'UserController@updateUser');
+Route::post('/updateUser', 'UserController@updateUser')->middleware("Cors");
 
 // User Gets
-Route::get('/getUserByUsernameOrEmail/{name}', 'UserController@getUserByUsernameOrEmail');
-Route::get('/getUser/{id}', 'UserController@getUser');
-Route::get('/getAllUsers', 'UserController@getAllUsers');
+Route::get('/getUserByUsernameOrEmail/{name}', 'UserController@getUserByUsernameOrEmail')->middleware("Cors");
+Route::get('/getUser/{id}', 'UserController@getUser')->middleware("Cors");
+Route::get('/getAllUsers', 'UserController@getAllUsers')->middleware("Cors");
