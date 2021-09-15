@@ -19,7 +19,6 @@ Route::get('/test', function () {
 
 // User Endpoints
 // User Posts
-Route::post('/register', 'UserController@createUser')->middleware("Cors");
 Route::group(['middleware' => 'cors'], function() {
     Route::post('register', 'UserController@createUser');
 });

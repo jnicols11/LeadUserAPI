@@ -71,6 +71,7 @@ class UserDAO
                 'Full_Name' => $user->getFullName(),
                 'Username' => $user->getUsername(),
                 'Email' => $user->getEmail(),
+                'Role' => $user->getRole(),
                 'Password' => $user->getPassword()
             ]);
 
